@@ -4,6 +4,8 @@ const {
   errors,
 } = require('celebrate')
 const helmet = require('helmet')
+const rateLimit = require('express-rate-limit')
+const cors = require('cors')
 const {
   routes,
 } = require('./routes')
@@ -21,7 +23,16 @@ const {
 
 const app = express()
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 минут
+  max: 100, // 100 запросов с одного IP
+})
+
+app.use(limiter)
+
 app.use(helmet())
+
+app.use(cors())
 
 // подключаемся к серверу mongo
 mongoose.connect(DATABASE_URL)

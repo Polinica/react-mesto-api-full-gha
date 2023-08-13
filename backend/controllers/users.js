@@ -55,7 +55,7 @@ async function login(req, res, next) {
       },
     )
     res.send({
-      jwt: token,
+      token,
     })
   } catch (err) {
     next(err)

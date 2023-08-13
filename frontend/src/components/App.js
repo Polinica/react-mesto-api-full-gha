@@ -38,7 +38,7 @@ function App() {
   // Авторизация пользователя
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
-  const [email, setEmail] = React.useState("");
+  //const [email, setEmail] = React.useState("");
 
   const navigate = useNavigate();
 
@@ -49,20 +49,6 @@ function App() {
     isEditProfilePopupOpen ||
     isAddPlacePopupOpen ||
     selectedCard;
-
-  // React.useEffect(() => {
-  //   if (isLoggedIn) {
-  //     setIsLoading(true);
-  //     api.getUserInfo().then(setCurrentUser).catch(console.error);
-
-  //     api
-  //       .getInitialCards()
-  //       .then((res) => {
-  //         setCards(res);
-  //       })
-  //       .catch(console.error);
-  //   };
-  // }, []);
 
   React.useEffect(() => {
     if (isLoggedIn) {
@@ -206,7 +192,8 @@ function App() {
         .checkToken(token)
         .then((res) => {
           console.log(res);
-          setEmail(res.data.email);
+//          setEmail(res.email);
+          api.setToken(token);
           setIsLoggedIn(true);
           navigate("/");
         })
@@ -239,7 +226,7 @@ function App() {
                   cards={cards}
                   onCardLike={handleCardLike}
                   onCardDelete={handleCardDelete}
-                  email={email}
+                  email={currentUser.email}
                   onLogout={handleLogout}
                 />
               </ProtectedRoute>

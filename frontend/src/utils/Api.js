@@ -36,6 +36,10 @@ class Api {
     }
   }
 
+  setToken(token) {
+    this._headers.authorization = `Bearer ${token}`;
+  }
+
   /**
    * Получает данные текущего пользователя
    * @returns {Promise} Промис с ответом сервера: объект текущего пользователя
@@ -188,5 +192,8 @@ class Api {
 }
 
 const api = new Api(apiConfig);
+// const api = new Api({
+//   address: "http://localhost:3000",
+// });
 
 export default api;
