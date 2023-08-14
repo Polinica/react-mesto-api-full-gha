@@ -9,11 +9,11 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.70.71
 
-Frontend https://...
+Frontend https://newetpika.nomoreparties.co/
 
-Backend https://...
+Backend https://api.newetpika.nomoreparties.co/sign-up
 
 ### _**Проектная работа №15. Курс «Веб-разработчик» Яндекс.Практикум.**_
 

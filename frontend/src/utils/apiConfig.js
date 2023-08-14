@@ -10,7 +10,7 @@
 // };
 
 export const apiConfig = {
-  baseUrl: `http://localhost:3000`,
+  baseUrl: `https://api.newetpika.nomoreparties.co`,
   headers: {
     // authorization: token,
     "Content-Type": "application/json",
