@@ -192,7 +192,8 @@ function App() {
         .checkToken(token)
         .then((res) => {
           console.log(res);
-//          setEmail(res.email);
+          // setEmail(res.email);
+          // setCurrentUser(res);
           api.setToken(token);
           setIsLoggedIn(true);
           navigate("/");

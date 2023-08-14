@@ -1,3 +1,5 @@
+import { apiConfig } from './apiConfig';
+
 class Auth {
   /**
    * Отвечает за осуществление и обработку сетевых запросов, связанных с аутентификацией
@@ -88,6 +90,6 @@ class Auth {
 
 //const auth = new Auth("https://auth.nomoreparties.co");
 
-const auth = new Auth("http://localhost:3000");
+const auth = new Auth(apiConfig.baseUrl);
 
 export default auth;

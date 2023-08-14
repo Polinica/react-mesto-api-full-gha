@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const mongoose = require('mongoose')
 const {
@@ -28,12 +30,6 @@ const limiter = rateLimit({
   max: 100, // 100 запросов с одного IP
 })
 
-app.use(limiter)
-
-app.use(helmet())
-
-app.use(cors())
-
 // подключаемся к серверу mongo
 mongoose.connect(DATABASE_URL)
   .then(() => {
@@ -44,10 +40,26 @@ mongoose.connect(DATABASE_URL)
     console.error(err)
   })
 
+app.use(limiter)
+
+app.use(cors())
+
 app.use(requestLogger) // подключаем логгер запросов
+
+app.use(helmet())
 
 // подключаем роуты и всё остальное...
 app.use(express.json())
+
+// Краш-тест сервера
+// (вызывает принудительное падение сервера
+// для проверки автоматического перезапуска)
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт')
+  }, 0)
+})
+
 app.use(routes)
 
 app.use(errorLogger) // подключаем логгер ошибок

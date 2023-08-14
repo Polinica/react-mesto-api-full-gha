@@ -26,10 +26,16 @@ function Login({ handleShowInfoMessage, onLogin }) {
     auth
       .authorize(inputs)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem('token', res.token);
-          api.setToken(res.token);
-        };
+        // if (res.token) {
+        //   localStorage.setItem('token', res.token);
+        //   api.setToken(res.token);
+        // };
+        const token = res.token;
+
+        if (token) {
+          localStorage.setItem('token', token);
+          api.setToken(token);
+        }
         resetForm();
         onLogin();
         navigate("/");

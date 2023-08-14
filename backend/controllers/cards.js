@@ -17,8 +17,8 @@ const {
 async function getAllCards(req, res, next) {
   try {
     const cards = await Card.find({
-    })
-    res.send(cards)
+    }).populate('owner').populate('likes')
+    res.send(cards.reverse())
   } catch (err) {
     next(err)
   }
@@ -34,6 +34,8 @@ async function createCard(req, res, next) {
     const card = await Card.create({
       name, link, owner: ownerId,
     })
+    await card.populate('owner')
+    await card.populate('likes')
     res.status(201).send(card)
   } catch (err) {
     next(err)
@@ -47,7 +49,7 @@ async function deleteCard(req, res, next) {
       cardId,
     } = req.params
 
-    const card = await Card.findById(cardId).populate('owner')
+    const card = await Card.findById(cardId).populate('owner').populate('likes')
 
     if (!card) {
       throw new NotFoundError('Карточка не найдена')
@@ -82,7 +84,7 @@ async function putLike(req, res, next) {
       {
         new: true,
       },
-    )
+    ).populate('owner').populate('likes')
 
     if (!card) {
       throw new NotFoundError('Карточка не найдена')
@@ -107,7 +109,7 @@ async function deleteLike(req, res, next) {
       {
         new: true,
       },
-    )
+    ).populate('owner').populate('likes')
     if (!card) {
       throw new NotFoundError('Карточка не найдена')
     }
