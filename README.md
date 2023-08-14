@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.70.71
+IP 158.160.70.71
 
 Frontend https://newetpika.nomoreparties.co/
 
