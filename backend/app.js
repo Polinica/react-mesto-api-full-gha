@@ -40,11 +40,11 @@ mongoose.connect(DATABASE_URL)
     console.error(err)
   })
 
-app.use(limiter)
-
 app.use(cors())
 
 app.use(requestLogger) // подключаем логгер запросов
+
+app.use(limiter)
 
 app.use(helmet())
 
